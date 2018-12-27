@@ -403,25 +403,83 @@ echo '<table width="500" border="1" class="altrowstable" id="alternatecolor">';
 				echo '</tr>';
 			}
 			echo '</table>';
-			
 
+			// if($pageNow>1){
+			// 	$prePage = $pageNow-1;
+			// 	echo "<a href='ribosomalProtein.php?pageNow=$prePage'>pre</a> ";
+			//   }
+			//   if($pageNow<$pageCount){
+			// 	$nextPage = $pageNow+1;
+			// 	echo "<a href='search_rp.php?pageNow=$nextPage'>next</a> ";
+				
+			// 	echo "当前页{$pageNow}/共{$pageCount}页";
+			//   }
+			//   echo "<br/><br/>";
+
+			$QUERY_NAME = $_SERVER['QUERY_STRING'];
+			$page_pos = strpos($QUERY_NAME, "&pageNow");
+			if ($page_pos !== false){
+				$QUERY_NAME = substr($QUERY_NAME, 0, $page_pos);
+			}
 
 			if($pageNow>1){
 				$prePage = $pageNow-1;
-				echo "<a href='ribosomalProtein.php?pageNow=$prePage'>pre</a> ";
+				$PRE = sprintf("<a href='search_rp.php?%s&pageNow=%s'>pre</a> ", $QUERY_NAME, $prePage);
+				echo $PRE;
 			  }
 			  if($pageNow<$pageCount){
 				$nextPage = $pageNow+1;
-				// echo "<a href='search_rp.php?pageNow=$nextPage'>next</a> ";
+				$NEXT = sprintf("<a href='search_rp.php?%s&pageNow=%s'>next</a> ", $QUERY_NAME, $nextPage);
+				echo $NEXT;
 				
-				echo "当前页{$pageNow}/共{$pageCount}页";
+				echo "Current page {$pageNow}/Total {$pageCount} pages";
 			  }
 			  echo "<br/><br/>";
+			  
+$FORM = '<form action="search_rp.php?'.$QUERY_NAME.'">';
+$r1 = '<input type="hidden" name="r1", value="'.$_GET['r1'].'">';
+$t1 = '<input type="hidden" name="t1", value="'.$_GET['t1'].'">';
+$s1 = '<input type="hidden" name="s1", value="'.$_GET['s1'].'">';
+$r2 = '<input type="hidden" name="r2", value="'.$_GET['r2'].'">';
+$t2 = '<input type="hidden" name="t2", value="'.$_GET['t2'].'">';
+$s2 = '<input type="hidden" name="s2", value="'.$_GET['s2'].'">';
+$r3 = '<input type="hidden" name="r3", value="'.$_GET['r3'].'">';
+$t3 = '<input type="hidden" name="t3", value="'.$_GET['t3'].'">';
+$s3 = '<input type="hidden" name="s3", value="'.$_GET['s3'].'">';
+$r4 = '<input type="hidden" name="r4", value="'.$_GET['r4'].'">';
+$t4 = '<input type="hidden" name="t4", value="'.$_GET['t4'].'">';
+$s4 = '<input type="hidden" name="s4", value="'.$_GET['s4'].'">';
+$r5 = '<input type="hidden" name="r5", value="'.$_GET['r5'].'">';
+$t5 = '<input type="hidden" name="t5", value="'.$_GET['t5'].'">';
+$s5 = '<input type="hidden" name="s5", value="'.$_GET['s5'].'">';
+echo <<<label
+	$FORM
+	$r1
+	$t1
+	$s1
+	$r2
+	$t2
+	$s2
+	$r3
+	$t3
+	$s3
+	$r4
+	$t4
+	$s4
+	$r5
+	$t5
+	$s5
+	<input type="text" name="pageNow">
+	<input type="submit" value="GO">
+	</form>
+label
+
+
 ?>
-<form action="search_rp.php">
+<!-- <form action="search_rp.php">
 				<input type="text" name="pageNow">
 				<input type="submit" value="GO">
-			  </form>
+			  </form> -->
 
 		</div>
 	</div>

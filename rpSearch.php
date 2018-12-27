@@ -254,7 +254,7 @@ input {
 	<option value="strain name">ORGANISM(STRAIN)</option>
 </select>
 <input type="text" name="s2"><br>
-<select name="r2">
+<select name="r3">
 	<option value="AND">AND</option>
 	<option value="OR">OR</option>
 	<option value="NOT">NOT</option>

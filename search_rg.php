@@ -147,17 +147,7 @@ table.altrowstable td {
 						</h1>
 					</div>
 				</div>
-				<!-- <div class="header-right">
-					<div class="agileinfo-social-grids">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-rss"></i></a></li>
-							<li><a href="#"><i class="fa fa-vk"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div> -->
+				
 			</div>
 		</div>
 		<div class="header-bottom">
@@ -213,7 +203,8 @@ table.altrowstable td {
 $conn=mysql_connect("localhost","root","root") or die("can't connect".mysql_error());
 mysql_select_db("rpars",$conn) or die;
 
-$query="SELECT * FROM `resistance gene` WHERE ";
+$query="FROM `resistance gene` WHERE ";
+// $query="SELECT * FROM `resistance gene` WHERE ";
 if ($_GET['s1'] == "" && $_GET['s2'] == "" && $_GET['s3'] == "" && $_GET['s4'] == "" && $_GET['s5'] == ""){
 	$query .= "1";
 }
@@ -354,7 +345,37 @@ if ($_GET['s5'] != ""){
 	}
 }
 
+
+$pageSize = 10;   //每页显示的数量
+$rowCount = 0;   //要从数据库中获取
+$pageNow = 1;    //当前显示第几页
+ 
+//如果有pageNow就使用，没有就默认第一页。
+if (!empty($_GET['pageNow'])){
+  $pageNow = $_GET['pageNow'];
+}
+ 
+$pageCount = 0;  //表示共有多少页
+ 
+$sql1="SELECT count(*)".$query;
+$res1 = mysql_query($sql1);
+ 
+if($row1=mysql_fetch_row($res1)){
+  $rowCount = $row1[0];
+}
+ 
+//计算共有多少页，ceil取进1
+$pageCount = ceil(($rowCount/$pageSize));
+ 
+//使用sql语句时，注意有些变量应取出赋值。
+$pre = ($pageNow-1)*$pageSize;
+
+
+$qp = sprintf("limit %s, %s", $pre, $pageSize);
+$query = "SELECT * ".$query.$qp;
+
 $result = mysql_query($query,$conn); 
+
 
 echo '<table width="500" border="1" class="altrowstable" id="alternatecolor">';
 			echo '<tr><th>gene ID</th><th>gene type</th><th>strain name</th><th>antibiotic name</th><th>description</th></tr>';
@@ -370,6 +391,64 @@ echo '<table width="500" border="1" class="altrowstable" id="alternatecolor">';
 		
 			}
 			echo '</table>';
+
+			$QUERY_NAME = $_SERVER['QUERY_STRING'];
+			$page_pos = strpos($QUERY_NAME, "&pageNow");
+			if ($page_pos !== false){
+				$QUERY_NAME = substr($QUERY_NAME, 0, $page_pos);
+			}
+
+			if($pageNow>1){
+				$prePage = $pageNow-1;
+				$PRE = sprintf("<a href='search_rg.php?%s&pageNow=%s'>pre</a> ", $QUERY_NAME, $prePage);
+				echo $PRE;
+			  }
+			  if($pageNow<$pageCount){
+				$nextPage = $pageNow+1;
+				$NEXT = sprintf("<a href='search_rg.php?%s&pageNow=%s'>next</a> ", $QUERY_NAME, $nextPage);
+				echo $NEXT;
+				
+				echo "Current page {$pageNow}/Total {$pageCount} pages";
+			  }
+			  echo "<br/><br/>";
+			  
+$FORM = '<form action="search_rg.php?'.$QUERY_NAME.'">';
+$r1 = '<input type="hidden" name="r1", value="'.$_GET['r1'].'">';
+$t1 = '<input type="hidden" name="t1", value="'.$_GET['t1'].'">';
+$s1 = '<input type="hidden" name="s1", value="'.$_GET['s1'].'">';
+$r2 = '<input type="hidden" name="r2", value="'.$_GET['r2'].'">';
+$t2 = '<input type="hidden" name="t2", value="'.$_GET['t2'].'">';
+$s2 = '<input type="hidden" name="s2", value="'.$_GET['s2'].'">';
+$r3 = '<input type="hidden" name="r3", value="'.$_GET['r3'].'">';
+$t3 = '<input type="hidden" name="t3", value="'.$_GET['t3'].'">';
+$s3 = '<input type="hidden" name="s3", value="'.$_GET['s3'].'">';
+$r4 = '<input type="hidden" name="r4", value="'.$_GET['r4'].'">';
+$t4 = '<input type="hidden" name="t4", value="'.$_GET['t4'].'">';
+$s4 = '<input type="hidden" name="s4", value="'.$_GET['s4'].'">';
+$r5 = '<input type="hidden" name="r5", value="'.$_GET['r5'].'">';
+$t5 = '<input type="hidden" name="t5", value="'.$_GET['t5'].'">';
+$s5 = '<input type="hidden" name="s5", value="'.$_GET['s5'].'">';
+echo <<<label
+	$FORM
+	$r1
+	$t1
+	$s1
+	$r2
+	$t2
+	$s2
+	$r3
+	$t3
+	$s3
+	$r4
+	$t4
+	$s4
+	$r5
+	$t5
+	$s5
+	<input type="text" name="pageNow">
+	<input type="submit" value="GO">
+	</form>
+label
 ?>
 
 		</div>
