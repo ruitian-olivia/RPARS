@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gallery</title>
+<title>Browse Resistance Gene</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="keywords" content="" />
@@ -147,17 +147,7 @@ table.altrowstable td {
 						</h1>
 					</div>
 				</div>
-				<!-- <div class="header-right">
-					<div class="agileinfo-social-grids">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-rss"></i></a></li>
-							<li><a href="#"><i class="fa fa-vk"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clearfix"> </div> -->
+	
 			</div>
 		</div>
 		<div class="header-bottom">
@@ -177,19 +167,19 @@ table.altrowstable td {
 								<ul class="nav navbar-nav">
 									<li><a class="list-border" href="index.html">Home</a></li>
 									<li><a href="about.html">About</a></li>
-									<li ><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
+									<li ><a class="active"href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a class="hvr-bounce-to-bottom" href="ribosomalProtein.php">Ribosomal Protein</a></li>
 											<li><a class="active"  class="hvr-bounce-to-bottom" href="resistanceGene.php">Resistance Gene</a></li>          
 										</ul>
 									</li>								
-									<li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></a>
+									<li><a  href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a class="hvr-bounce-to-bottom" href="rpSearch.php">Ribosomal Protein</a></li>
 											<li><a class="hvr-bounce-to-bottom" href="rgSearch.php">Resistance Gene</a></li>          
 										</ul>
 									</li>									
-									<li><a href="blog.html">Help</a></li>
+									<li><a href="help.html">Help</a></li>
 									<li><a class="list-border1" href="links.html">Links</a></li>
 								</ul>	
 								<div class="clearfix"> </div>
@@ -210,7 +200,7 @@ table.altrowstable td {
 		<div class="container">
 		<?php
 			$conn=mysql_connect("localhost","root","root") or die("can't connect".mysql_error());
-			mysql_select_db("drugresistantstrainrp_database",$conn) or die;
+			mysql_select_db("rpars",$conn) or die;
 
 			$pageSize = 100;   //每页显示的数量
   $rowCount = 0;   //要从数据库中获取
@@ -280,36 +270,37 @@ table.altrowstable td {
 		<div class="container">
 			<div class="agile-footer-grids">
 				<div class="col-md-3 w3-agile-footer-grid">
-					<h3>About</h3>
-					<p>Aenean cursus dignissim porta. Quisque mattis dolor sem, nec ultrices arcu consequat vel. Phasellus sollicitudin dui diam, et scelerisque nunc venenatis non. Cras dapibus, urna et pellentesque egestas</p>
+					<h3>Address</h3>
+					<p>NO. 800 Dongchuan Road, Minhang District, Shanghai, China</p>
 				</div>
 				<div class="col-md-3 w3-agile-footer-grid">
-					<h3>Events</h3>
+					<h3>Team Members</h3>
 					<ul>
-						<li>12th Aug <a href="single.html">Curabitur</a></li>
-						<li>10th Sept <a href="single.html">Fusce urna</a></li>
-						<li>24th Sept <a href="single.html">Praesent</a></li>
-						<li>17th Oct <a href="single.html">Malesuada </a></li>
-						<li>09th Dec <a href="single.html">Cum sociis</a></li>
+						<li>Ruitian Gao </a></li>
+						<li>Tongwei Dai</a></li>
+						<li>Tiantian Cheng</a></li>
+						<li>Wen Wen </li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3-agile-footer-grid">
 					<h3>Navigation</h3>
 					<ul>
+						<li class="text"><a href="index.html">Home</a></li>
 						<li class="text"><a href="about.html">About</a></li>
-						<li class="text"><a href="typography.html">Typography</a></li>
-						<li class="text"><a href="icons.html">Icons</a></li>
-						<li class="text"><a href="gallery.html">Gallery</a></li>
-						<li class="text"><a href="blog.html">Blog</a></li>
-						<li class="text"><a href="contact.html">Contact</a></li>
+						<li class="text"><a href="ribosomalProtein.php">Browse</a></li>
+						<li class="text"><a href="rpSearch.php">Search</a></li>
+						<li class="text"><a href="help.html">Help</a></li>
+						<li class="text"><a href="links.html">Links</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3-agile-footer-grid">
-					<h3>Newsletter</h3>
-					<form action="#" method="post">
-						<input type="email" id="mc4wp_email" name="EMAIL" placeholder="Enter your email here" required="">
-						<input type="submit" value="Subscribe">
-					</form>
+					<h3>Related Links</h3>
+					<ul>
+						<li class="text"><a href="https://www.uniprot.org/">UniProt (Universal Protein)</a></li>
+						<li class="text"><a href="https://ardb.cbcb.umd.edu/">ARDB (Antibiotic Resistance Gene Database)</a></li>
+						<li class="text"><a href="https://card.mcmaster.ca/">CARD(Comprehensive Antibiotic Resistance Database)</a></li>
+						<li class="text"><a href="http://life.sjtu.edu.cn/">School of Life Sciences and Biotechnology, SJTU </a></li>
+					</ul>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
