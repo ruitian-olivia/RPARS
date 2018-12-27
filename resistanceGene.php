@@ -252,7 +252,7 @@ table.altrowstable td {
 			  if($pageNow<$pageCount){
 				$nextPage = $pageNow+1;
 				echo "<a href='resistanceGene.php?pageNow=$nextPage'>next</a> ";
-				echo "当前页{$pageNow}/共{$pageCount}页";
+				echo "Current page {$pageNow}/Total {$pageCount} pages";
 			  }
 			  echo "<br/><br/>";
 			  ?>
@@ -307,13 +307,6 @@ table.altrowstable td {
 		</div>
 	</div>
 	<!-- //footer -->
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-		</div>
-	</div>
-	<!-- //copyright -->
 		<script src="js/lightbox-plus-jquery.min.js"> </script>
 	<script src="js/SmoothScroll.min.js"></script>
 	<script type="text/javascript" src="js/move-top.js"></script>
