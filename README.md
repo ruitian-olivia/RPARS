@@ -1,5 +1,6 @@
 # RPARS Database
-Our RPARS（Ribosomal proteins of antibiotic resistant strains）provides you with the resistance gene and strains ribosomal protein. As a user, you can glance over the strain which is antibiotic, download the fasta file of protein sequence, and even get the resisstance mechanism of the strain.
+Our RPARS（Ribosomal proteins of antibiotic resistant strains）provides you with the resistance gene and strains ribosomal protein. As a user, you can glance over the strain which is antibiotic, download the fasta file of protein sequence, and even get the resisstance mechanism of the strain.<br><br>
+![](https://github.com/ruitian-olivia/RPARS/blob/master/images/RPARS.jpg)
 
 #### Resistance Gene
 In this section, you can look through the resistance gene ID, gene type strain name, antibiotic name and the description of the resistance gene.
